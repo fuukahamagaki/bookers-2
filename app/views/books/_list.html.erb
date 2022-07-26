@@ -1,0 +1,42 @@
+ <% if book.errors.any? %>
+  <%= book.errors.count %>error prohibited this obj from being saved:
+  <ul>
+    <% book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+  <div>
+   <h3>User info</h3>
+    <p><%= image_tag user.get_profile_image(100,100) %></p>
+  <table class="table">
+    <tbody>
+      <tr>
+    	  <th>name</th>
+    	  <th><%= user.name %></th>
+      </tr>
+      <br>
+      <tr>
+    	  <th>introduction</th>
+    	  <th><%= user.introduction %></th>
+    	</tr>
+    </tbody>
+	</table>
+
+	<%= link_to edit_user_path(user.id) , class: "btn btn-outline-secondary btn-block" do %>
+   <i class="fas fa-user-cog"></i>
+　 <% end %>
+
+  </div>
+
+
+  <h3>New book</h3>
+
+  <%= form_with model: book do |f| %>
+    <p>Title</p>
+      <%= f.text_field :title %>
+    <p>Opinion</p>
+      <%= f.text_area :body %>
+    <br><%= f.submit 'Create Book' ,class: "btn btn-success" %>
+  <% end %>
+
